@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3초 분리배출 가이드 (PWA)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="location-badge">
+                <span class="pulse-icon"></span>
+                현재 거주지: <strong>대전 유성구</strong>
+            </div>
+            <h1 class="logo">3초 분리배출 AI</h1>
+        </header>
+
+        <main class="app-content">
+            <section id="scan-section" class="card">
+                <div class="camera-viewfinder">
+                    <div class="scan-guide-line"></div>
+                    <div class="camera-placeholder">
+                        <span class="icon">🍜</span>
+                        <p>오염된 컵라면 용기를<br>중앙에 맞춰주세요</p>
+                    </div>
+                </div>
+                <button id="btn-scan" class="btn btn-primary">스캔 시작하기</button>
+            </section>
+
+            <section id="loading-section" class="card hidden">
+                <div class="loader"></div>
+                <p class="loading-text">AI 비전 엔진이 오염도 및 혼합 상태를 실시간 분석 중...</p>
+            </section>
+
+            <section id="result-section" class="card hidden">
+                <div class="alert-banner">
+                    <span class="warning-tag">경고</span>
+                    <h3>오염도 35% 진단</h3>
+                    <p>유성구 기준 <strong>수거 불가 품목</strong>입니다.</p>
+                </div>
+
+                <div class="tab-menu">
+                    <button class="tab-btn active" data-tab="action-guide">단계별 액션 가이드</button>
+                    <button class="tab-btn" data-tab="region-compare">지자체 규정 비교</button>
+                </div>
+
+                <div id="action-guide" class="tab-content active">
+                    <ul class="checklist">
+                        <li>
+                            <label class="check-item">
+                                <input type="checkbox" class="guide-check">
+                                <span class="custom-checkbox"></span>
+                                <span class="text"><strong>1단계:</strong> 용기 전면의 실링 비닐은 완전히 칼로 도려내어 [비닐류]로 분리 배출</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="check-item">
+                                <input type="checkbox" class="guide-check">
+                                <span class="custom-checkbox"></span>
+                                <span class="text"><strong>2단계:</strong> 오염된 스티로폼 본체는 유성구 조례상 재활용 수거가 안 되므로 [일반 종량제 봉투]에 배출</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="region-compare" class="tab-content">
+                    <p class="compare-intro">컵라면 오염 용기(오염도 30% 이상) 수거 지침 비교</p>
+                    <table class="compare-table">
+                        <thead>
+                            <tr>
+                                <th>지역</th>
+                                <th>수거 여부</th>
+                                <th>배출 방법</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight">
+                                <td>대전 유성구</td>
+                                <td class="status-no">불가</td>
+                                <td>종량제 봉투 배출</td>
+                            </tr>
+                            <tr>
+                                <td>A 지자체</td>
+                                <td class="status-yes">가능</td>
+                                <td>세척 후 스티로폼</td>
+                            </tr>
+                            <tr>
+                                <td>B 지자체</td>
+                                <td class="status-no">불가</td>
+                                <td>종량제 봉투 배출</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="table-note">*유성구는 조례상 오염된 스티로폼의 재활용을 엄격히 제한합니다.</p>
+                </div>
+
+                <button id="btn-complete" class="btn btn-success" disabled>배출 완료하고 에코 카운터 올리기</button>
+            </section>
+
+            <section id="success-section" class="card hidden">
+                <div class="success-header">
+                    <div class="success-icon">🎉</div>
+                    <h2>오늘 유성구 자원 순환에 기여하셨습니다!</h2>
+                </div>
+                
+                <div class="counter-box">
+                    <p>내 로컬 에코 카운터</p>
+                    <div class="counter-number"><span id="eco-count">0</span>회</div>
+                </div>
+
+                <div class="pwa-guide-box">
+                    <p class="pwa-text">💡 <strong>팁:</strong> 브라우저 메뉴에서 <strong>'홈 화면에 추가'</strong>를 누르시면, 다음 밤샘 야식 쓰레기도 3초 만에 해결할 수 있습니다!</p>
+                </div>
+
+                <button id="btn-restart" class="btn btn-secondary">처음으로 돌아가기</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
